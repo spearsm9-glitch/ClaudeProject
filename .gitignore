@@ -1,0 +1,9 @@
+*.xcodeproj
+App/Info.plist
+Widget/Info.plist
+App/*.entitlements
+Widget/*.entitlements
+DerivedData/
+build/
+.DS_Store
+xcuserdata/
