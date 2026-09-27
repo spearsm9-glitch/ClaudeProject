@@ -25,7 +25,7 @@ targets:
     info:
       path: App/Info.plist
       properties:
-        CFBundleDisplayName: Day Countdown
+        CFBundleDisplayName: Japan Countdown
         LSApplicationCategoryType: public.app-category.productivity
     entitlements:
       path: App/DayCountdown.entitlements
@@ -45,7 +45,7 @@ targets:
     info:
       path: Widget/Info.plist
       properties:
-        CFBundleDisplayName: Day Countdown
+        CFBundleDisplayName: Japan Countdown
         NSExtension:
           NSExtensionPointIdentifier: com.apple.widgetkit-extension
     entitlements:

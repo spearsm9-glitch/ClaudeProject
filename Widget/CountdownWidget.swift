@@ -2,32 +2,17 @@ import AppIntents
 import SwiftUI
 import WidgetKit
 
-// MARK: - Configuration (right-click the widget → "Edit Day Countdown")
+// MARK: - Configuration (right-click the widget → "Edit Japan Countdown")
 
 struct CountdownConfigIntent: WidgetConfigurationIntent {
-    static var title: LocalizedStringResource = "Day Countdown"
-    static var description = IntentDescription("Count down the days to something exciting.")
+    static var title: LocalizedStringResource = "Japan Countdown"
+    static var description = IntentDescription("Count down the days until your trip to Japan.")
 
-    @Parameter(title: "Event", default: "New Year")
-    var eventName: String
-
-    @Parameter(title: "Date")
+    @Parameter(title: "Departure Date")
     var targetDate: Date?
 
-    @Parameter(title: "Emoji", default: "🎆")
-    var emoji: String
-
-    @Parameter(title: "Theme", default: .sunset)
-    var theme: CountdownTheme
-
     func model(at now: Date) -> CountdownModel {
-        CountdownModel(
-            eventName: eventName.isEmpty ? "The Big Day" : eventName,
-            emoji: emoji.isEmpty ? "🎉" : String(emoji.prefix(2)),
-            targetDate: targetDate ?? CountdownModel.defaultTarget(from: now),
-            theme: theme,
-            now: now
-        )
+        CountdownModel(targetDate: targetDate ?? CountdownModel.defaultTarget(from: now), now: now)
     }
 }
 
@@ -80,7 +65,7 @@ struct CountdownWidgetView: View {
             }
         }
         .containerBackground(for: .widget) {
-            ThemeBackground(theme: entry.model.theme)
+            WashiBackground()
         }
     }
 }
@@ -92,8 +77,8 @@ struct DayCountdownWidget: Widget {
         AppIntentConfiguration(kind: kind, intent: CountdownConfigIntent.self, provider: CountdownProvider()) { entry in
             CountdownWidgetView(entry: entry)
         }
-        .configurationDisplayName("Day Countdown")
-        .description("A cheerful daily countdown to your big day.")
+        .configurationDisplayName("Japan Countdown")
+        .description("Days until Japan.")
         .supportedFamilies([.systemSmall, .systemMedium, .systemLarge])
     }
 }
